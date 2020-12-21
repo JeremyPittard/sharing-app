@@ -8,9 +8,10 @@ export default function Home() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams)
 
     if (urlParams.has("sharing")) {
-      setPath("share");
+      setPath("sharing");
     } else {
       setPath("home");
     }
@@ -18,7 +19,7 @@ export default function Home() {
 
   if (checkPath === "sharing") {
     return <Share />;
-  } else if (setPath === "home") {
+  } else if (checkPath === "home") {
     return <Homepage />;
   } else {
     return <Loading />;

@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Loading</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
