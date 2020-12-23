@@ -2,25 +2,24 @@ import Head from "next/head";
 import React, { useState, useEffect } from "react";
 
 const Share = () => {
-  const [isLoading, toggleLoading] = useState(true);
-
-  let siteToShare = "https://thiswebsite.com";
-  let textContent = "";
-
-  let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${siteToShare}`;
-  let linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${siteToShare}&title=&summary=${textContent}&source=`;
-  let twitterLink = `https://twitter.com/intent/tweet?url=${siteToShare}&text=${textContent}`;
-  let pinterestLink = `https://pinterest.com/pin/create/button/?url=${siteToShare}&media=&description=${textContent}`;
-  let mailtoLink = `mailto:info@example.com?&subject=&body=${siteToShare} ${textContent}`;
-  let exclude = {
+  const [exclude, setExclude] = useState({
     fb: false,
     linked: false,
     twitter: false,
     pin: false,
     mail: false,
-  };
+  });
+
+  let siteToShare = "https://thiswebsite.com";
+  // let textContent = ""; TODO
+  let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${siteToShare}`;
+  let linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${siteToShare}&title=&summary=${textContent}&source=`;
+  let twitterLink = `https://twitter.com/intent/tweet?url=${siteToShare}&text=${textContent}`;
+  let pinterestLink = `https://pinterest.com/pin/create/button/?url=${siteToShare}&media=&description=${textContent}`;
+  let mailtoLink = `mailto:info@example.com?&subject=&body=${siteToShare} ${textContent}`;
 
   useEffect(() => {
+    console.log(exclude);
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("sharing")) {
       siteToShare = urlParams.get("sharing");
@@ -28,10 +27,15 @@ const Share = () => {
 
     if (urlParams.has("exclude")) {
       const excludeString = urlParams.get("exclude");
-      exclude.fb = excludeString.includes("facebook") ? true : false;
-      exclude.linked = excludeString.includes("linkedin") ? true : false;
-      exclude.twitter = excludeString.includes("twitter") ? true : false;
-      exclude.mail = excludeString.includes("mail") ? true : false;
+      let excludeObject = exclude;
+      excludeObject.fb = excludeString.includes("facebook") ? true : false;
+      excludeObject.linked = excludeString.includes("linkedin") ? true : false;
+      excludeObject.twitter = excludeString.includes("twitter") ? true : false;
+      excludeObject.mail = excludeString.includes("mail") ? true : false;
+      excludeObject.pin = excludeString.includes("pinterest") ? true : false;
+      console.log(excludeObject, "theobjects");
+
+      setExclude({ ...exclude, excludeObject });
     }
   }, []);
 
@@ -43,7 +47,7 @@ const Share = () => {
       </Head>
       <main>
         <h1>Share!</h1>
-        {exclude.fb && (
+        {!exclude.fb && (
           <a
             href={fbLink}
             target="_blank"
@@ -54,7 +58,7 @@ const Share = () => {
             fb
           </a>
         )}
-        {exclude.twitter && (
+        {!exclude.twitter && (
           <a
             href={twitterLink}
             target="_blank"
@@ -65,7 +69,7 @@ const Share = () => {
             twitter
           </a>
         )}
-        {exclude.linked && (
+        {!exclude.linked && (
           <a
             href={linkedInLink}
             target="_blank"
@@ -76,7 +80,7 @@ const Share = () => {
             linked
           </a>
         )}
-        {exclude.pin && (
+        {!exclude.pin && (
           <a
             href={pinterestLink}
             target="_blank"
@@ -87,7 +91,7 @@ const Share = () => {
             pinterest
           </a>
         )}
-        {exclude.mail && (
+        {!exclude.mail && (
           <a
             href={mailtoLink}
             target="_blank"
