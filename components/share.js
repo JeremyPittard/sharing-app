@@ -11,7 +11,7 @@ const Share = () => {
   });
 
   let siteToShare = "https://thiswebsite.com";
-  // let textContent = ""; TODO
+  let textContent = "";
   let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${siteToShare}`;
   let linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${siteToShare}&title=&summary=${textContent}&source=`;
   let twitterLink = `https://twitter.com/intent/tweet?url=${siteToShare}&text=${textContent}`;
