@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+      font-family: "Atkinson";
+      font-weight: 400;
+      src: url(/fonts/Atkinson-Hyperlegible-Regular-102.woff) format("woff"),
+           url(/fonts/Atkinson-Hyperlegible-Regular-102.woff2) format("woff2");
+    }
+    @font-face {
+      font-family: "Atkinson Headings";
+      font-weight: 400;
+      src: url(/fonts/Atkinson-Hyperlegible-Bold-102.woff) format("woff"),
+           url(/fonts/Atkinson-Hyperlegible-Bold-102.woff2) format("woff2");
+    }
+
+    * {
+        font-family: "Atkinson"
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        font-family: "Atkinson Headings"
+    }
+  }
