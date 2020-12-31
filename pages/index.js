@@ -17,11 +17,11 @@ export default function Home() {
     }
   }, []);
 
-  if (checkPath === "sharing") {
-    return <Share />;
-  } else if (checkPath === "home") {
-    return <Homepage />;
-  } else {
-    return <Loading />;
-  }
-}
+     if (checkPath === "sharing") {
+      return <Share />;
+    } else if (checkPath === "home") {
+      return <Homepage />;
+    } else {
+      return <Loading />;
+    }
+  } 

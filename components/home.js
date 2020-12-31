@@ -1,5 +1,10 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
+import gsap from 'gsap';
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
+
 
 const Homepage = () => {
   const [linkValue, setLinkValue] = useState("");
@@ -14,6 +19,11 @@ const Homepage = () => {
     document.execCommand("copy");
     document.body.removeChild(elem);
   };
+
+  const scrolling = (e, destination) => {
+    e.preventDefault();
+    gsap.to(window, {scrollTo: destination })
+  }
 
   const addToExcludeValue = (e) => {
     var checked = document.querySelectorAll("input:checked").length;
@@ -40,41 +50,72 @@ const Homepage = () => {
     <>
       <Head>
         <title>ShareLlama</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#7E7192" />
+        <meta name="msapplication-TileColor" content="#7e7192" />
+        <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-
-      <main className="bg-aqua-llama">
-        <div className="container mx-auto">
-          <h1>Home!</h1>
-
-          <div className="form flex flex-col">
+      <nav className="container mx-auto py-5">
+        <ul className="flex items-center">
+          <li>
+            <a href="/" className="text-3xl flex items-end font-heading">
+              <img src="/img/logo-large.svg" alt="share-llama logo" className="inline mr-5"/>
+              ShareLlama
+            </a>
+          </li>
+          <li className="text-xl ml-auto mr-12">
+            <a href="#what-it-is" className="flex items-center" onClick={(e, destination) => scrolling(e, '#what-it-is')}>
+              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2">
+                ?
+              </span>
+              What is this?!
+            </a>
+          </li>
+          <li>
+          <a href="https://www.buymeacoffee.com/jpittard" className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl">
+            Buy me a coffee
+          </a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <div className="container px-36 pt-28 mx-auto flex items-center text-darth-llama">
+          <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
+            <h1 className="text-center text-3xl mb-5">Share To Social Media</h1>
+            <label htmlFor="link entry" className="mb-2">
+              <strong>Step 1:</strong> Enter the link you wish to share.
+            </label>
             <input
               type="text"
               placeholder="enter link to share here"
               onKeyUp={(e) => setLinkValue(e.target.value)}
+              className="border-darth-llama border-2 rounded-md px-4 py-2 mb-5"
+              name="link-entry"
             />
-            <code id="link-output">
-              https://www.sharethings.com?sharing=https://
-              {linkValue.replace("https://", "").replace("http://", "")}
-              {excludeValue}
-            </code>{" "}
-            <button onClick={() => copyLinkValue("link-output")}>
-              copy link
-            </button>
-            <code id="markup-output">
-              &lt;a href="https://www.sharethings.com?sharing=https://
-              {linkValue.replace("https://", "").replace("http://", "")}
-              {excludeValue}" rel="noopener noreferrer"&gt;share me!&lt;/a&gt;
-            </code>{" "}
-            <button onClick={() => copyLinkValue("markup-output")}>
-              copy markup
-            </button>
-            <div className="check-container">
+            <p><strong>Step 2:</strong> Select platforms you don't want to share on. </p>
+            <div className="check-container mt-2">
               <input
                 type="checkbox"
                 name="facebook"
                 value="facebook"
                 id="check-facebook"
+                className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label htmlFor="facebook">Facebook</label>
@@ -85,6 +126,7 @@ const Homepage = () => {
                 name="linkedin"
                 value="linkedin"
                 id="check-linkedin"
+                className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label htmlFor="linkedin">linkedin</label>
@@ -95,6 +137,7 @@ const Homepage = () => {
                 name="twitter"
                 value="twitter"
                 id="check-twitter"
+                className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label htmlFor="twitter">Twitter</label>
@@ -105,6 +148,7 @@ const Homepage = () => {
                 name="pinterest"
                 value="pinterest"
                 id="check-pinterest"
+                className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label htmlFor="pinterest">Pinterest</label>
@@ -115,10 +159,58 @@ const Homepage = () => {
                 name="mail"
                 value="mail"
                 id="check-mail"
+                className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label htmlFor="mail">Email</label>
             </div>
+            <p className="mt-5 mb-2"><strong>Step 3:</strong> copy either the link or the markup and share til your hearts content ❤</p>
+            <code
+              id="link-output"
+              className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 "
+            >
+              https://www.sharethings.com?sharing=https://
+              {linkValue.replace("https://", "").replace("http://", "")}
+              {excludeValue}
+            </code>{" "}
+            <p></p>
+            <button onClick={() => copyLinkValue("link-output")}>
+              copy link
+            </button>
+            <code
+              id="markup-output"
+              className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2"
+            >
+              &lt;a href="https://www.sharethings.com?sharing=https://
+              {linkValue.replace("https://", "").replace("http://", "")}
+              {excludeValue}" rel="noopener noreferrer" target="_blank"&gt;share
+              me!&lt;/a&gt;
+            </code>{" "}
+            <button onClick={() => copyLinkValue("markup-output")}>
+              copy markup
+            </button>
+          </div>
+        </div>
+        <div className="container py-28 mx-auto text-darth-llama">
+          <div className="form md:text-xl max-w-xl mx-auto">
+            <h2 className="text-5xl text-center" id="what-it-is">
+              ShareLlama{" "}
+            </h2>
+            <h3 className="text-2xl text-center mb-5">
+              A plugin free share to social media solution!
+            </h3>
+            <p>
+              ShareLlama was born out of a want for a quick social media share
+              solution, one I didnt have to code up myself or use a plugin to
+              create. All I wanted was to paste a link in my page/app and I
+              would be good to go. However such a tool did not exist, well at
+              least as far as my search engine skills could tell. <br />
+              So here we are.
+            </p>
+            <p className="mt-5">
+              if you like this tool, I'd totally appreciate if you hit the buy me a coffee button up there 👆,
+              all proceeds will go towards the hosting and maintainence of this and other sideprojects 
+            </p>
           </div>
         </div>
       </main>

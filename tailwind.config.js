@@ -8,7 +8,7 @@ module.exports = {
         'soft-llama-pink': '#e4c3c3',
         'calma-llama': '#4b31a1',
         'violet-llama': '#7e7192',
-        'darth-llama': '#002f21'
+        'darth-llama': '#00140F'
       }
     },
   },
@@ -17,3 +17,4 @@ module.exports = {
   },
   plugins: [],
 }
+
