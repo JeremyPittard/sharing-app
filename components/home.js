@@ -72,7 +72,7 @@ const Homepage = () => {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <nav className="container mx-auto py-5">
-        <ul className="flex items-center">
+        <ul className="flex items-end">
           <li>
             <a href="/" className="text-3xl flex items-end font-heading">
               <img src="/img/logo-large.svg" alt="share-llama logo" className="inline mr-5"/>
@@ -88,7 +88,7 @@ const Homepage = () => {
             </a>
           </li>
           <li>
-          <a href="https://www.buymeacoffee.com/jpittard" className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl">
+          <a href="https://www.buymeacoffee.com/jpittard" className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center">
             Buy me a coffee
           </a>
           </li>
@@ -169,7 +169,7 @@ const Homepage = () => {
               id="link-output"
               className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 "
             >
-              https://www.sharethings.com?sharing=https://
+              localhost:3000?sharing=https://
               {linkValue.replace("https://", "").replace("http://", "")}
               {excludeValue}
             </code>{" "}
@@ -181,7 +181,7 @@ const Homepage = () => {
               id="markup-output"
               className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2"
             >
-              &lt;a href="https://www.sharethings.com?sharing=https://
+              &lt;a href="localhost:3000?sharing=https://
               {linkValue.replace("https://", "").replace("http://", "")}
               {excludeValue}" rel="noopener noreferrer" target="_blank"&gt;share
               me!&lt;/a&gt;

@@ -10,19 +10,21 @@ const Share = () => {
     mail: false,
   });
 
-  let siteToShare = "https://thiswebsite.com";
+  const [site, setSite] = useState("https://www.thiswebsite.com")
+
   let textContent = "";
-  let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${siteToShare}`;
-  let linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${siteToShare}&title=&summary=${textContent}&source=`;
-  let twitterLink = `https://twitter.com/intent/tweet?url=${siteToShare}&text=${textContent}`;
-  let pinterestLink = `https://pinterest.com/pin/create/button/?url=${siteToShare}&media=&description=${textContent}`;
-  let mailtoLink = `mailto:info@example.com?&subject=&body=${siteToShare} ${textContent}`;
+  let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site}`;
+  let linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${site}&title=&summary=${textContent}&source=`;
+  let twitterLink = `https://twitter.com/intent/tweet?url=${site}&text=${textContent}`;
+  let pinterestLink = `https://pinterest.com/pin/create/button/?url=${site}&media=&description=${textContent}`;
+  let mailtoLink = `mailto:info@example.com?&subject=&body=${site} ${textContent}`;
 
   useEffect(() => {
     console.log(exclude);
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("sharing")) {
-      siteToShare = urlParams.get("sharing");
+      setSite(urlParams.get('sharing'))
+      
     }
 
     if (urlParams.has("exclude")) {
