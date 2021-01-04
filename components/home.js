@@ -1,14 +1,44 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
-import gsap from 'gsap';
-import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollToPlugin);
-
 
 const Homepage = () => {
   const [linkValue, setLinkValue] = useState("");
   const [excludeValue, setExcludeValue] = useState("");
+  const theUrl = window.location.href;
+
+  let buyMeACoffeeScript = document.createElement("script");
+  buyMeACoffeeScript.src =
+    "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js";
+  buyMeACoffeeScript.setAttribute("data-name", "BMC-Widget");
+  buyMeACoffeeScript.setAttribute("data-id", "jpittard");
+  buyMeACoffeeScript.setAttribute("data-x_margin","18");
+  buyMeACoffeeScript.setAttribute("data-y_margin","18");
+  buyMeACoffeeScript.setAttribute("data-id", "jpittard");
+  buyMeACoffeeScript.setAttribute("data-description","Support the creation of this tool and more");
+  buyMeACoffeeScript.setAttribute(
+    "data-message",
+    "I'm glad you appreciated this project 😍,thankyou for your support!"
+  );
+  buyMeACoffeeScript.setAttribute("data-color", "transparent");
+  buyMeACoffeeScript.setAttribute('data-position', 'right')
+  //on render does not actually trigger script, needed to get a little funky
+  buyMeACoffeeScript.onload = function () {
+    var coffeeTrigger = document.createEvent("Event");
+    coffeeTrigger.initEvent("DOMContentLoaded", false, false);
+    window.dispatchEvent(coffeeTrigger);
+  };
+
+  useEffect(() => {
+    document.body.appendChild(buyMeACoffeeScript);
+    return () => {
+      document.body.removeChild(buyMeACoffeeScript);
+      document.body.removeChild(document.getElementById("bmc-wbtn"));
+    };
+  }, []);
 
   const copyLinkValue = (fieldTarget) => {
     var text = document.getElementById(fieldTarget).innerText;
@@ -22,8 +52,8 @@ const Homepage = () => {
 
   const scrolling = (e, destination) => {
     e.preventDefault();
-    gsap.to(window, {scrollTo: destination })
-  }
+    gsap.to(window, { scrollTo: destination });
+  };
 
   const addToExcludeValue = (e) => {
     var checked = document.querySelectorAll("input:checked").length;
@@ -75,12 +105,20 @@ const Homepage = () => {
         <ul className="flex items-end">
           <li>
             <a href="/" className="text-3xl flex items-end font-heading">
-              <img src="/img/logo-large.svg" alt="share-llama logo" className="inline mr-5"/>
+              <img
+                src="/img/logo-large.svg"
+                alt="share-llama logo"
+                className="inline mr-5"
+              />
               ShareLlama
             </a>
           </li>
           <li className="text-xl ml-auto mr-12">
-            <a href="#what-it-is" className="flex items-center" onClick={(e, destination) => scrolling(e, '#what-it-is')}>
+            <a
+              href="#what-it-is"
+              className="flex items-center"
+              onClick={(e, destination) => scrolling(e, "#what-it-is")}
+            >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2">
                 ?
               </span>
@@ -88,9 +126,13 @@ const Homepage = () => {
             </a>
           </li>
           <li>
-          <a href="https://www.buymeacoffee.com/jpittard" className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center">
-            Buy me a coffee
-          </a>
+            <a
+              href="#"
+              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center"
+              onClick={(e) => {e.preventDefault(), document.getElementById("bmc-wbtn").click() }}
+            >
+              Buy me a coffee
+            </a>
           </li>
         </ul>
       </nav>
@@ -108,7 +150,10 @@ const Homepage = () => {
               className="border-darth-llama border-2 rounded-md px-4 py-2 mb-5"
               name="link-entry"
             />
-            <p><strong>Step 2:</strong> Select platforms you don't want to share on. </p>
+            <p>
+              <strong>Step 2:</strong> Select platforms you don't want to share
+              on.{" "}
+            </p>
             <div className="check-container mt-2">
               <input
                 type="checkbox"
@@ -164,12 +209,15 @@ const Homepage = () => {
               />
               <label htmlFor="mail">Email</label>
             </div>
-            <p className="mt-5 mb-2"><strong>Step 3:</strong> copy either the link or the markup and share til your hearts content ❤</p>
+            <p className="mt-5 mb-2">
+              <strong>Step 3:</strong> copy either the link or the markup and
+              share til your hearts content ❤
+            </p>
             <code
               id="link-output"
               className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 "
             >
-              localhost:3000?sharing=https://
+              {theUrl}?sharing=https://
               {linkValue.replace("https://", "").replace("http://", "")}
               {excludeValue}
             </code>{" "}
@@ -181,7 +229,7 @@ const Homepage = () => {
               id="markup-output"
               className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2"
             >
-              &lt;a href="localhost:3000?sharing=https://
+              &lt;a href="{theUrl}?sharing=https://
               {linkValue.replace("https://", "").replace("http://", "")}
               {excludeValue}" rel="noopener noreferrer" target="_blank"&gt;share
               me!&lt;/a&gt;
@@ -208,8 +256,9 @@ const Homepage = () => {
               So here we are.
             </p>
             <p className="mt-5">
-              if you like this tool, I'd totally appreciate if you hit the buy me a coffee button up there 👆,
-              all proceeds will go towards the hosting and maintainence of this and other sideprojects 
+              if you like this tool, I'd totally appreciate if you hit the buy
+              me a coffee button up there 👆, all proceeds will go towards the
+              hosting and maintainence of this and other sideprojects
             </p>
           </div>
         </div>
