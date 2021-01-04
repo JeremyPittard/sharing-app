@@ -160,10 +160,10 @@ const Homepage = () => {
                 name="facebook"
                 value="facebook"
                 id="check-facebook"
-                className="mr-2"
+                className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="facebook">Facebook</label>
+              <label htmlFor="facebook" onClick={()=> document.getElementById('check-facebook').click()} className="cursor-pointer">Facebook</label>
             </div>
             <div className="check-container">
               <input
@@ -174,7 +174,7 @@ const Homepage = () => {
                 className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="linkedin">linkedin</label>
+              <label htmlFor="linkedin" onClick={()=> document.getElementById('check-linkedin').click()} className="cursor-pointer">linkedin</label>
             </div>
             <div className="check-container">
               <input
@@ -182,10 +182,10 @@ const Homepage = () => {
                 name="twitter"
                 value="twitter"
                 id="check-twitter"
-                className="mr-2"
+                className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="twitter">Twitter</label>
+              <label htmlFor="twitter" onClick={()=> document.getElementById('check-twitter').click()} className="cursor-pointer">Twitter</label>
             </div>
             <div className="check-container">
               <input
@@ -193,10 +193,10 @@ const Homepage = () => {
                 name="pinterest"
                 value="pinterest"
                 id="check-pinterest"
-                className="mr-2"
+                className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="pinterest">Pinterest</label>
+              <label htmlFor="pinterest" onClick={()=> document.getElementById('check-pinterest').click()} className="cursor-pointer">Pinterest</label>
             </div>
             <div className="check-container">
               <input
@@ -204,10 +204,10 @@ const Homepage = () => {
                 name="mail"
                 value="mail"
                 id="check-mail"
-                className="mr-2"
+                className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="mail">Email</label>
+              <label htmlFor="mail" onClick={()=> document.getElementById('check-mail').click()} className="cursor-pointer" >Email</label>
             </div>
             <p className="mt-5 mb-2">
               <strong>Step 3:</strong> copy either the link or the markup and
@@ -222,7 +222,7 @@ const Homepage = () => {
               {excludeValue}
             </code>{" "}
             <p></p>
-            <button onClick={() => copyLinkValue("link-output")}>
+            <button onClick={() => copyLinkValue("link-output")} className="">
               copy link
             </button>
             <code
