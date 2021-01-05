@@ -15,16 +15,19 @@ const Homepage = () => {
     "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js";
   buyMeACoffeeScript.setAttribute("data-name", "BMC-Widget");
   buyMeACoffeeScript.setAttribute("data-id", "jpittard");
-  buyMeACoffeeScript.setAttribute("data-x_margin","18");
-  buyMeACoffeeScript.setAttribute("data-y_margin","18");
+  buyMeACoffeeScript.setAttribute("data-x_margin", "18");
+  buyMeACoffeeScript.setAttribute("data-y_margin", "18");
   buyMeACoffeeScript.setAttribute("data-id", "jpittard");
-  buyMeACoffeeScript.setAttribute("data-description","Support the creation of this tool and more");
+  buyMeACoffeeScript.setAttribute(
+    "data-description",
+    "Support the creation of this tool and more"
+  );
   buyMeACoffeeScript.setAttribute(
     "data-message",
     "I'm glad you appreciated this project 😍,thankyou for your support!"
   );
   buyMeACoffeeScript.setAttribute("data-color", "transparent");
-  buyMeACoffeeScript.setAttribute('data-position', 'right')
+  buyMeACoffeeScript.setAttribute("data-position", "right");
   //on render does not actually trigger script, needed to get a little funky
   buyMeACoffeeScript.onload = function () {
     var coffeeTrigger = document.createEvent("Event");
@@ -129,7 +132,9 @@ const Homepage = () => {
             <a
               href="#"
               className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center"
-              onClick={(e) => {e.preventDefault(), document.getElementById("bmc-wbtn").click() }}
+              onClick={(e) => {
+                e.preventDefault(), document.getElementById("bmc-wbtn").click();
+              }}
             >
               Buy me a coffee
             </a>
@@ -163,7 +168,15 @@ const Homepage = () => {
                 className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="facebook" onClick={()=> document.getElementById('check-facebook').click()} className="cursor-pointer">Facebook</label>
+              <label
+                htmlFor="facebook"
+                onClick={() =>
+                  document.getElementById("check-facebook").click()
+                }
+                className="cursor-pointer"
+              >
+                Facebook
+              </label>
             </div>
             <div className="check-container">
               <input
@@ -174,7 +187,15 @@ const Homepage = () => {
                 className="mr-2"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="linkedin" onClick={()=> document.getElementById('check-linkedin').click()} className="cursor-pointer">linkedin</label>
+              <label
+                htmlFor="linkedin"
+                onClick={() =>
+                  document.getElementById("check-linkedin").click()
+                }
+                className="cursor-pointer"
+              >
+                linkedin
+              </label>
             </div>
             <div className="check-container">
               <input
@@ -185,7 +206,13 @@ const Homepage = () => {
                 className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="twitter" onClick={()=> document.getElementById('check-twitter').click()} className="cursor-pointer">Twitter</label>
+              <label
+                htmlFor="twitter"
+                onClick={() => document.getElementById("check-twitter").click()}
+                className="cursor-pointer"
+              >
+                Twitter
+              </label>
             </div>
             <div className="check-container">
               <input
@@ -196,7 +223,15 @@ const Homepage = () => {
                 className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="pinterest" onClick={()=> document.getElementById('check-pinterest').click()} className="cursor-pointer">Pinterest</label>
+              <label
+                htmlFor="pinterest"
+                onClick={() =>
+                  document.getElementById("check-pinterest").click()
+                }
+                className="cursor-pointer"
+              >
+                Pinterest
+              </label>
             </div>
             <div className="check-container">
               <input
@@ -207,7 +242,13 @@ const Homepage = () => {
                 className="mr-2 cursor-pointer"
                 onChange={(e) => addToExcludeValue(e)}
               />
-              <label htmlFor="mail" onClick={()=> document.getElementById('check-mail').click()} className="cursor-pointer" >Email</label>
+              <label
+                htmlFor="mail"
+                onClick={() => document.getElementById("check-mail").click()}
+                className="cursor-pointer"
+              >
+                Email
+              </label>
             </div>
             <p className="mt-5 mb-2">
               <strong>Step 3:</strong> copy either the link or the markup and
@@ -245,16 +286,30 @@ const Homepage = () => {
               ShareLlama{" "}
             </h2>
             <h3 className="text-2xl text-center mb-5">
-              A plugin free share to social media solution!
+              A plugin free, share to social media solution!
             </h3>
+            <a
+              href={`http://localhost:3000/?sharing=${window.location.href}`}
+              rel="noopener noreferrer"
+              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center w-36 mx-auto my-5"
+              target="_blank"
+            >
+              Try me!
+            </a>
+
             <p>
-              ShareLlama was born out of a want for a quick social media share
-              solution, one I didnt have to code up myself or use a plugin to
-              create. All I wanted was to paste a link in my page/app and I
-              would be good to go. However such a tool did not exist, well at
-              least as far as my search engine skills could tell. <br />
-              So here we are.
+              This tool was created so that content authors could quickly add
+              share links to their sites. We do not collect cookies or store any
+              data, the primary function of this site is to share to social
+              media quickly
             </p>
+
+            <p>
+              This page is a link generator tool, which creates a link with a query string for the sharing page to use.
+              The sharing page checks the query string for the address to share and social media sites to exlude. By default it includes 
+              Facebook, Twitter, Pinterest and LinkedIn by default.
+            </p>
+
             <p className="mt-5">
               if you like this tool, I'd totally appreciate if you hit the buy
               me a coffee button up there 👆, all proceeds will go towards the
