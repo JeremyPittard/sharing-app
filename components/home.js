@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { BiCoffeeTogo, BiCopyAlt } from 'react-icons/bi'
 import React, { useState, useEffect } from "react";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
@@ -51,12 +52,19 @@ const Homepage = () => {
     elem.select();
     document.execCommand("copy");
     document.body.removeChild(elem);
+
+    copyToast();
   };
 
   const scrolling = (e, destination) => {
     e.preventDefault();
-    gsap.to(window, { scrollTo: destination });
+    gsap.to(window, { scrollTo: destination });    
   };
+
+  const copyToast = () => {
+    const toast = document.getElementById('copy-toast')
+    gsap.to(toast, {opacity: 1, duration: 0.5, translateY: '-15', yoyo: true, repeat: 1, repeatDelay: 1} )
+  }
 
   const addToExcludeValue = (e) => {
     var checked = document.querySelectorAll("input:checked").length;
@@ -119,10 +127,10 @@ const Homepage = () => {
           <li className="text-xl ml-auto mr-12">
             <a
               href="#what-it-is"
-              className="flex items-center"
+              className="flex items-center whats-this"
               onClick={(e, destination) => scrolling(e, "#what-it-is")}
             >
-              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2">
+              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2 transition-all duration-200 ease-in-out">
                 ?
               </span>
               What is this?!
@@ -131,12 +139,12 @@ const Homepage = () => {
           <li>
             <a
               href="#"
-              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center"
+              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
               onClick={(e) => {
                 e.preventDefault(), document.getElementById("bmc-wbtn").click();
               }}
             >
-              Buy me a coffee
+             <BiCoffeeTogo className="mr-2.5" />Caffeinate me!
             </a>
           </li>
         </ul>
@@ -263,8 +271,8 @@ const Homepage = () => {
               {excludeValue}
             </code>{" "}
             <p></p>
-            <button onClick={() => copyLinkValue("link-output")} className="">
-              copy link
+            <button onClick={() => copyLinkValue("link-output")} className="bg-violet-llama text-white rounded-md w-36 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5">
+              <BiCopyAlt className="mr-2.5"/>copy link
             </button>
             <code
               id="markup-output"
@@ -275,8 +283,8 @@ const Homepage = () => {
               {excludeValue}" rel="noopener noreferrer" target="_blank"&gt;share
               me!&lt;/a&gt;
             </code>{" "}
-            <button onClick={() => copyLinkValue("markup-output")}>
-              copy markup
+            <button onClick={() => copyLinkValue("markup-output")} className="bg-violet-llama text-white rounded-md w-48 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5">
+            <BiCopyAlt className="mr-2.5" />copy markup
             </button>
           </div>
         </div>
@@ -291,7 +299,7 @@ const Homepage = () => {
             <a
               href={`http://localhost:3000/?sharing=${window.location.href}`}
               rel="noopener noreferrer"
-              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center w-36 mx-auto my-5"
+              className="focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center justify-center w-36 mx-auto my-5"
               target="_blank"
             >
               Try me!
@@ -312,12 +320,13 @@ const Homepage = () => {
 
             <p className="mt-5">
               if you like this tool, I'd totally appreciate if you hit the buy
-              me a coffee button up there 👆, all proceeds will go towards the
+              me a coffee button up top 👆, all proceeds will go towards the
               hosting and maintainence of this and other sideprojects
             </p>
           </div>
         </div>
       </main>
+      <div id="copy-toast" className="bg-aqua-llama text-darth-llama fixed bottom-5 right-5 px-5 py-2.5 rounded-md pointer-events-none opacity-0">copied to clipboard!</div>
     </>
   );
 };

@@ -1,5 +1,12 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+import { BiCoffeeTogo, BiLock, BiMailSend } from 'react-icons/bi'
+import {FaFacebookF, FaTwitter, FaLinkedin, FaPinterest, } from 'react-icons/fa'
+
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const Share = () => {
   const [exclude, setExclude] = useState({
@@ -10,7 +17,7 @@ const Share = () => {
     mail: false,
   });
 
-  const [site, setSite] = useState("https://www.thiswebsite.com");
+  const [site, setSite] = useState("");
 
   let textContent = "";
   let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site.replace(
@@ -86,6 +93,16 @@ const Share = () => {
     };
   }, []);
 
+  
+  const scrolling = (e, destination) => {
+    e.preventDefault();
+    gsap.to(window, { scrollTo: destination });
+
+    let blurElement = document.getElementById(destination.replace('#', ''))
+        blurElement.blur();
+
+  };
+
   return (
     <div>
       <Head>
@@ -126,7 +143,7 @@ const Share = () => {
           <li className="text-xl ml-auto mr-12">
             <a
               href="#what-it-is"
-              className="flex items-center"
+              className="whats-this flex items-center"
               onClick={(e, destination) => scrolling(e, "#what-it-is")}
             >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2">
@@ -138,10 +155,10 @@ const Share = () => {
           <li className="text-xl mr-12">
             <a
               href="#what-it-is"
-              className="flex items-center h-12"
-              onClick={(e, destination) => scrolling(e, "#what-it-is")}
+              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
+              onClick={(e, destination) => scrolling(e, "#security-tips")}
             >
-              Security Check
+              <BiLock className="mr-2.5"/>Security Check
             </a>
           </li>
         </ul>
@@ -149,16 +166,22 @@ const Share = () => {
       <main>
         <div className="container px-36 pt-28 mx-auto text-center text-darth-llama h-screen">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
-            <h1>Share!</h1>
+           <h1 className='text-3xl mb-5'>Share to Social Media</h1>
+           
+           <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block mb-5">
+              {site.replace("http://", "https://")}
+            </code>{" "}
+            <div className="share-wrap flex flex-col md:flex-row justify-around w-full mt-5 items-center mx-auto text-5xl">
+
             {!exclude.fb && (
               <a
                 href={fbLink}
                 target="_blank"
                 rel="noreferrer noopener"
-                aria-label="This is an external link (opens in a new tab)"
-                className="block"
+                aria-label="share link to facebook"
+                className="text-bookface hover:t"
               >
-                fb
+               <FaFacebookF />
               </a>
             )}
             {!exclude.twitter && (
@@ -166,10 +189,10 @@ const Share = () => {
                 href={twitterLink}
                 target="_blank"
                 rel="noreferrer noopener"
-                aria-label="This is an external link (opens in a new tab)"
-                className="block"
+                aria-label="share link to twitter"
+                className="text-chic-tweetz hover:t"
               >
-                twitter
+                <FaTwitter />
               </a>
             )}
             {!exclude.linked && (
@@ -177,10 +200,10 @@ const Share = () => {
                 href={linkedInLink}
                 target="_blank"
                 rel="noreferrer noopener"
-                aria-label="This is an external link (opens in a new tab)"
-                className="block"
+                aria-label="share link to linked in"
+                className="text-linked hover:t"
               >
-                linked
+                <FaLinkedin />
               </a>
             )}
             {!exclude.pin && (
@@ -188,10 +211,10 @@ const Share = () => {
                 href={pinterestLink}
                 target="_blank"
                 rel="noreferrer noopener"
-                aria-label="This is an external link (opens in a new tab)"
-                className="block"
+                aria-label="Share link to pinterest"
+                className="text-pints"
               >
-                pinterest
+                <FaPinterest />
               </a>
             )}
             {!exclude.mail && (
@@ -199,18 +222,20 @@ const Share = () => {
                 href={mailtoLink}
                 target="_blank"
                 rel="noreferrer noopener"
-                aria-label="This is an external link (opens in a new tab)"
-                className="block"
+                aria-label="share link via email"
+                className=" hover:t"
               >
-                mail
+                <BiMailSend />
               </a>
             )}
+            </div>
+
           </div>
         </div>
 
         <div className="container py-28 mx-auto text-darth-llama">
           <div className="form md:text-xl max-w-xl mx-auto">
-            <h2 className="text-5xl text-center" id="what-it-is">
+            <h2 className="text-5xl text-center focus:outline-none" id="what-it-is">
               What is this?!{" "}
             </h2>
             <h3 className="text-2xl text-center mb-5">
@@ -222,7 +247,7 @@ const Share = () => {
               data, the primary function of this site is to share to social
               media quickly
             </p>
-            <h2 className="text-5xl text-center mt-10 mb-2" id="security-tips">
+            <h2 className="text-5xl text-center mt-10 mb-2 focus:outline-none" id="security-tips" >
               Security Check
             </h2>
             <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block ">
@@ -242,13 +267,13 @@ const Share = () => {
               {" "}
               <a
                 href="#"
-                className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl block w-48 text-center mx-auto my-5"
+                className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center w-60 justify-center text-center mx-auto my-5 focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
                 onClick={(e) => {
                   e.preventDefault(),
                     document.getElementById("bmc-wbtn").click();
                 }}
               >
-                Buy me a coffee
+                <BiCoffeeTogo className="mr-2.5" />Caffeinate me!
               </a>
               <p className="mt-5">
               if you like this tool, I'd totally appreciate if you hit the buy

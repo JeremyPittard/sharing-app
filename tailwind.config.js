@@ -8,7 +8,11 @@ module.exports = {
         'soft-llama-pink': '#e4c3c3',
         'calma-llama': '#4b31a1',
         'violet-llama': '#7e7192',
-        'darth-llama': '#00140F'
+        'darth-llama': '#00140F',
+        'bookface': '#3b5998',
+        'chic-tweetz': '#1DA1F2',
+        'linked': '#0072b1',
+        'pints': '#C92228'
       }
     },
   },
