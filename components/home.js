@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { BiCoffeeTogo, BiCopyAlt } from 'react-icons/bi'
+import { BiCoffeeTogo, BiCopyAlt } from "react-icons/bi";
 import React, { useState, useEffect } from "react";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
@@ -58,13 +58,20 @@ const Homepage = () => {
 
   const scrolling = (e, destination) => {
     e.preventDefault();
-    gsap.to(window, { scrollTo: destination });    
+    gsap.to(window, { scrollTo: destination });
   };
 
   const copyToast = () => {
-    const toast = document.getElementById('copy-toast')
-    gsap.to(toast, {opacity: 1, duration: 0.5, translateY: '-15', yoyo: true, repeat: 1, repeatDelay: 1} )
-  }
+    const toast = document.getElementById("copy-toast");
+    gsap.to(toast, {
+      opacity: 1,
+      duration: 0.5,
+      translateY: "-15",
+      yoyo: true,
+      repeat: 1,
+      repeatDelay: 1,
+    });
+  };
 
   const addToExcludeValue = (e) => {
     var checked = document.querySelectorAll("input:checked").length;
@@ -112,8 +119,8 @@ const Homepage = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <nav className="container mx-auto py-5">
-        <ul className="flex items-end">
+      <nav className="md:container mx-auto px-5 md:px-0 md:py-5">
+        <ul className="md:flex items-end">
           <li>
             <a href="/" className="text-3xl flex items-end font-heading">
               <img
@@ -124,27 +131,28 @@ const Homepage = () => {
               ShareLlama
             </a>
           </li>
-          <li className="text-xl ml-auto mr-12">
+          <li className="text-xl md:ml-auto mr-12 inline-block md:block mt-5 md:mt-0">
             <a
               href="#what-it-is"
               className="flex items-center whats-this"
               onClick={(e, destination) => scrolling(e, "#what-it-is")}
             >
-              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2 transition-all duration-200 ease-in-out">
+              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?
               </span>
-              What is this?!
+              <span className="hidden md:block">What is this?!</span>
             </a>
           </li>
-          <li>
+          <li className="inline-block md:block">
             <a
               href="#"
-              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
+              className="rounded-full h-14 w-14 md:h-auto md:w-auto bg-darth-llama text-aqua-llama md:rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
               onClick={(e) => {
                 e.preventDefault(), document.getElementById("bmc-wbtn").click();
               }}
             >
-             <BiCoffeeTogo className="mr-2.5" />Caffeinate me!
+              <BiCoffeeTogo className="md:mr-2.5 mx-auto md:my-0" />
+              <span className="hidden md:block">Caffeinate me!</span>
             </a>
           </li>
         </ul>
@@ -271,8 +279,12 @@ const Homepage = () => {
               {excludeValue}
             </code>{" "}
             <p></p>
-            <button onClick={() => copyLinkValue("link-output")} className="bg-violet-llama text-white rounded-md w-36 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5">
-              <BiCopyAlt className="mr-2.5"/>copy link
+            <button
+              onClick={() => copyLinkValue("link-output")}
+              className="bg-violet-llama text-white rounded-md w-36 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5"
+            >
+              <BiCopyAlt className="mr-2.5" />
+              copy link
             </button>
             <code
               id="markup-output"
@@ -283,8 +295,12 @@ const Homepage = () => {
               {excludeValue}" rel="noopener noreferrer" target="_blank"&gt;share
               me!&lt;/a&gt;
             </code>{" "}
-            <button onClick={() => copyLinkValue("markup-output")} className="bg-violet-llama text-white rounded-md w-48 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5">
-            <BiCopyAlt className="mr-2.5" />copy markup
+            <button
+              onClick={() => copyLinkValue("markup-output")}
+              className="bg-violet-llama text-white rounded-md w-48 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5"
+            >
+              <BiCopyAlt className="mr-2.5" />
+              copy markup
             </button>
           </div>
         </div>
@@ -313,9 +329,11 @@ const Homepage = () => {
             </p>
 
             <p>
-              This page is a link generator tool, which creates a link with a query string for the sharing page to use.
-              The sharing page checks the query string for the address to share and social media sites to exlude. By default it includes 
-              Facebook, Twitter, Pinterest and LinkedIn by default.
+              This page is a link generator tool, which creates a link with a
+              query string for the sharing page to use. The sharing page checks
+              the query string for the address to share and social media sites
+              to exlude. By default it includes Facebook, Twitter, Pinterest and
+              LinkedIn by default.
             </p>
 
             <p className="mt-5">
@@ -326,7 +344,12 @@ const Homepage = () => {
           </div>
         </div>
       </main>
-      <div id="copy-toast" className="bg-aqua-llama text-darth-llama fixed bottom-5 right-5 px-5 py-2.5 rounded-md pointer-events-none opacity-0">copied to clipboard!</div>
+      <div
+        id="copy-toast"
+        className="bg-aqua-llama text-darth-llama fixed bottom-5 right-5 px-5 py-2.5 rounded-md pointer-events-none opacity-0"
+      >
+        copied to clipboard!
+      </div>
     </>
   );
 };
