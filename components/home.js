@@ -158,7 +158,7 @@ const Homepage = () => {
         </ul>
       </nav>
       <main>
-        <div className="container px-36 pt-28 mx-auto flex items-center text-darth-llama">
+        <div className="container px-12 md:px-36 pt-28 mx-auto flex items-center text-darth-llama">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
             <h1 className="text-center text-3xl mb-5">Share To Social Media</h1>
             <label htmlFor="link entry" className="mb-2">
@@ -304,7 +304,7 @@ const Homepage = () => {
             </button>
           </div>
         </div>
-        <div className="container py-28 mx-auto text-darth-llama">
+        <div className="container px-12 md:px-0 py-28 mx-auto text-darth-llama">
           <div className="form md:text-xl max-w-xl mx-auto">
             <h2 className="text-5xl text-center" id="what-it-is">
               ShareLlama{" "}

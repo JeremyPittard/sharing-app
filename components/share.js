@@ -18,6 +18,7 @@ const Share = () => {
   });
 
   const [site, setSite] = useState("");
+  const [sitePreview, setSitePreview] = useState();
 
   let textContent = "";
   let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site.replace(
@@ -72,6 +73,21 @@ const Share = () => {
     if (urlParams.has("sharing")) {
       setSite(urlParams.get("sharing"));
     }
+
+      fetch(
+        `https://api.linkpreview.net/?key=826cf34168179abe59fe4438b1c31d21&q=${urlParams.get('sharing')}`,
+        {
+          method: "GET",
+          mode: "cors"
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setSitePreview(data)
+        })
+        .catch((error) => {
+          console.error("you done fucked up", error);
+        });
 
     if (urlParams.has("exclude")) {
       const excludeString = urlParams.get("exclude");
@@ -128,8 +144,8 @@ const Share = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <nav className="container mx-auto py-5">
-        <ul className="flex items-end">
+      <nav className="md:container mx-auto px-5 md:px-0 md:py-5">
+        <ul className="md:flex items-end">
           <li>
             <a href="/" className="text-3xl flex items-end font-heading">
               <img
@@ -140,20 +156,20 @@ const Share = () => {
               ShareLlama
             </a>
           </li>
-          <li className="text-xl ml-auto mr-12">
+          <li className="text-xl md:ml-auto mr-12 inline-block md:block mt-5 md:mt-0">
             <a
               href="#what-it-is"
-              className="whats-this flex items-center"
+              className="flex items-center whats-this"
               onClick={(e, destination) => scrolling(e, "#what-it-is")}
             >
-              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-12 w-12 text-3xl justify-center mr-2">
+              <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?
               </span>
-              What is this?!
+              <span className="hidden md:block">What is this?!</span>
             </a>
           </li>
-          <li className="text-xl mr-12">
-            <a
+          <li className="inline-block md:block">
+          <a
               href="#what-it-is"
               className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
               onClick={(e, destination) => scrolling(e, "#security-tips")}
@@ -164,7 +180,7 @@ const Share = () => {
         </ul>
       </nav>
       <main>
-        <div className="container px-36 pt-28 mx-auto text-center text-darth-llama h-screen">
+        <div className="container px-12 md:px-36 pt-28 mx-auto text-center text-darth-llama h-screen">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
            <h1 className='text-3xl mb-5'>Share to Social Media</h1>
            
