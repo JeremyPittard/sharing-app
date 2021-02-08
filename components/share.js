@@ -183,8 +183,10 @@ const Share = () => {
         <div className="container px-12 md:px-36 pt-28 mx-auto text-center text-darth-llama h-screen">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
            <h1 className='text-3xl mb-5'>Share to Social Media</h1>
+
+           <img src={sitePreview.image} alt="" className="max-w-xs mx-auto"/>
            
-           <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block mb-5">
+           <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5">
               {site.replace("http://", "https://")}
             </code>{" "}
             <div className="share-wrap flex flex-col md:flex-row justify-around w-full mt-5 items-center mx-auto text-5xl">
