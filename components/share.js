@@ -18,7 +18,7 @@ const Share = () => {
   });
 
   const [site, setSite] = useState("");
-  const [sitePreview, setSitePreview] = useState();
+  const [sitePreview, setSitePreview] = useState(null);
 
   let textContent = "";
   let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site.replace(
@@ -184,8 +184,10 @@ const Share = () => {
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
            <h1 className='text-3xl mb-5'>Share to Social Media</h1>
 
-           <img src={sitePreview.image} alt="" className="max-w-xs mx-auto"/>
-           
+           {sitePreview != null && sitePreview.image != null && 
+            <img src={sitePreview.image} alt={sitePreview.title} className="max-w-xs mx-auto"/>
+           }
+
            <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5">
               {site.replace("http://", "https://")}
             </code>{" "}

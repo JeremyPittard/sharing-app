@@ -313,7 +313,7 @@ const Homepage = () => {
               A plugin free, share to social media solution!
             </h3>
             <a
-              href={`http://localhost:3000/?sharing=${window.location.href}`}
+              href={`${window.location.href}?sharing=${window.location.href}`}
               rel="noopener noreferrer"
               className="focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center justify-center w-36 mx-auto my-5"
               target="_blank"
