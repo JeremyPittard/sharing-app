@@ -44,7 +44,7 @@ $aqua-llama: #7CC9B4;
 
   .whats-this { 
     &:hover, &:focus {
-      span {
+      span:not(.span-text) {
         color: $darth-llama;
         background-color: $aqua-llama;
       }

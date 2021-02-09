@@ -140,7 +140,7 @@ const Homepage = () => {
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?
               </span>
-              <span className="hidden md:block">What is this?!</span>
+              <span className="hidden md:block span-text">What is this?!</span>
             </a>
           </li>
           <li className="inline-block md:block">
@@ -175,13 +175,13 @@ const Homepage = () => {
               <strong>Step 2:</strong> Select platforms you don't want to share
               on.{" "}
             </p>
-            <div className="check-container mt-2">
+            <div className="check-container mt-2 flex items-center">
               <input
                 type="checkbox"
                 name="facebook"
                 value="facebook"
                 id="check-facebook"
-                className="mr-2 cursor-pointer"
+                className="mr-2 cursor-pointer w-6 h-6" 
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -194,13 +194,13 @@ const Homepage = () => {
                 Facebook
               </label>
             </div>
-            <div className="check-container">
+            <div className="check-container flex items-center">
               <input
                 type="checkbox"
                 name="linkedin"
                 value="linkedin"
                 id="check-linkedin"
-                className="mr-2"
+                className="mr-2 w-6 h-6"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -210,16 +210,16 @@ const Homepage = () => {
                 }
                 className="cursor-pointer"
               >
-                linkedin
+                LinkedIn
               </label>
             </div>
-            <div className="check-container">
+            <div className="check-container flex items-center">
               <input
                 type="checkbox"
                 name="twitter"
                 value="twitter"
                 id="check-twitter"
-                className="mr-2 cursor-pointer"
+                className="mr-2 cursor-pointer w-6 h-6"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -230,13 +230,13 @@ const Homepage = () => {
                 Twitter
               </label>
             </div>
-            <div className="check-container">
+            <div className="check-container flex items-center">
               <input
                 type="checkbox"
                 name="pinterest"
                 value="pinterest"
                 id="check-pinterest"
-                className="mr-2 cursor-pointer"
+                className="mr-2 cursor-pointer  w-6 h-6"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -249,13 +249,13 @@ const Homepage = () => {
                 Pinterest
               </label>
             </div>
-            <div className="check-container">
+            <div className="check-container flex items-center">
               <input
                 type="checkbox"
                 name="mail"
                 value="mail"
                 id="check-mail"
-                className="mr-2 cursor-pointer"
+                className="mr-2 cursor-pointer w-6 h-6"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label

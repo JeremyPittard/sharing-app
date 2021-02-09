@@ -144,7 +144,7 @@ const Share = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <nav className="md:container mx-auto px-5 md:px-0 md:py-5">
+      <nav className="md:container mx-auto px-5 md:px-0 py-5">
         <ul className="md:flex items-end">
           <li>
             <a href="/" className="text-3xl flex items-end font-heading">
@@ -156,7 +156,7 @@ const Share = () => {
               ShareLlama
             </a>
           </li>
-          <li className="text-xl md:ml-auto mr-12 inline-block md:block mt-5 md:mt-0">
+          <li className="text-xl md:ml-auto mr-12 hidden md:block mt-5 md:mt-0">
             <a
               href="#what-it-is"
               className="flex items-center whats-this"
@@ -168,7 +168,7 @@ const Share = () => {
               <span className="hidden md:block">What is this?!</span>
             </a>
           </li>
-          <li className="inline-block md:block">
+          <li className="hidden md:block">
           <a
               href="#what-it-is"
               className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
@@ -180,18 +180,18 @@ const Share = () => {
         </ul>
       </nav>
       <main>
-        <div className="container px-12 md:px-36 pt-28 mx-auto text-center text-darth-llama h-screen">
+        <div className="container px-12 md:px-36 pt-14 md:pt-28 mx-auto text-center text-darth-llama md:h-screen">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
            <h1 className='text-3xl mb-5'>Share to Social Media</h1>
 
            {sitePreview != null && sitePreview.image != null && 
-            <img src={sitePreview.image} alt={sitePreview.title} className="max-w-xs mx-auto"/>
+            <img src={sitePreview.image} alt={sitePreview.title} className="max-w-full block md:max-w-xs mx-auto"/>
            }
 
            <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5">
               {site.replace("http://", "https://")}
             </code>{" "}
-            <div className="share-wrap flex flex-col md:flex-row justify-around w-full mt-5 items-center mx-auto text-5xl">
+            <div className="share-wrap flex flex-row justify-around w-full mt-5 items-center mx-auto text-5xl">
 
             {!exclude.fb && (
               <a
@@ -253,7 +253,7 @@ const Share = () => {
           </div>
         </div>
 
-        <div className="container py-28 mx-auto text-darth-llama">
+        <div className="container py-28 mx-auto text-darth-llama px-5 md:px-0">
           <div className="form md:text-xl max-w-xl mx-auto">
             <h2 className="text-5xl text-center focus:outline-none" id="what-it-is">
               What is this?!{" "}
@@ -295,13 +295,12 @@ const Share = () => {
               >
                 <BiCoffeeTogo className="mr-2.5" />Caffeinate me!
               </a>
-              <p className="mt-5">
+              <p className="mt-10">
               if you like this tool, I'd totally appreciate if you hit the buy
               me a coffee button up there 👆, all proceeds will go towards the
               hosting and maintainence of this and other sideprojects
             </p>
           </div>
-          /
         </div>
       </main>
     </div>
