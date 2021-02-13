@@ -188,7 +188,7 @@ const Share = () => {
             <img src={sitePreview.image} alt={sitePreview.title} className="max-w-full block md:max-w-xs mx-auto"/>
            }
 
-           <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5">
+           <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5 whitespace-nowrap overflow-x-auto">
               {site.replace("http://", "https://")}
             </code>{" "}
             <div className="share-wrap flex flex-row justify-around w-full mt-5 items-center mx-auto text-5xl">
@@ -270,7 +270,7 @@ const Share = () => {
             <h2 className="text-5xl text-center mt-10 mb-2 focus:outline-none" id="security-tips" >
               Security Check
             </h2>
-            <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block ">
+            <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block whitespace-nowrap overflow-x-auto">
               {site.replace("http://", "https://")}
             </code>{" "}
             <ul className="mt-5 mb-10">

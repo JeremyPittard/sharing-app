@@ -61,3 +61,33 @@ $aqua-llama: #7CC9B4;
       }
     }
   }
+
+  input[type=checkbox] {
+    border: 1px solid $darth-llama;
+    border-radius: 3px;
+  }
+
+
+
+  //code scrollbar
+  code {
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background: white;
+    }
+    &::-webkit-scrollbar-thumb{
+      border-radius: 10px;
+      background: rgba($aqua-llama ,0.5);
+    }
+    &::-webkit-scrollbar-thumb:hover{
+      background: rgba($aqua-llama,0.9);
+    }
+    &::-webkit-scrollbar-thumb:active{
+      background: rgba($aqua-llama,1);
+    }
+  }

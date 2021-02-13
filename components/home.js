@@ -146,7 +146,7 @@ const Homepage = () => {
           <li className="inline-block md:block">
             <a
               href="#"
-              className="rounded-full h-14 w-14 md:h-auto md:w-auto bg-darth-llama text-aqua-llama md:rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
+              className="rounded-full h-14 w-14 md:h-auto md:w-auto bg-aqua-llama text-darth-llama md:rounded-md px-4 py-2 text-xl flex items-center focus:bg-darth-llama focus:text-aqua-llama hover:bg-darth-llama hover:text-aqua-llama transition-all duration-200 ease-in-out"
               onClick={(e) => {
                 e.preventDefault(), document.getElementById("bmc-wbtn").click();
               }}
@@ -181,7 +181,7 @@ const Homepage = () => {
                 name="facebook"
                 value="facebook"
                 id="check-facebook"
-                className="mr-2 cursor-pointer w-6 h-6" 
+                className="mr-2 form-checkbox cursor-pointer w-6 h-6 text-violet-llama" 
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -200,7 +200,7 @@ const Homepage = () => {
                 name="linkedin"
                 value="linkedin"
                 id="check-linkedin"
-                className="mr-2 w-6 h-6"
+                className="mr-2 w-6 h-6 form-checkbox text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -219,7 +219,7 @@ const Homepage = () => {
                 name="twitter"
                 value="twitter"
                 id="check-twitter"
-                className="mr-2 cursor-pointer w-6 h-6"
+                className="mr-2 cursor-pointer w-6 h-6 form-checkbox text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -236,7 +236,7 @@ const Homepage = () => {
                 name="pinterest"
                 value="pinterest"
                 id="check-pinterest"
-                className="mr-2 cursor-pointer  w-6 h-6"
+                className="mr-2 cursor-pointer form-checkbox w-6 h-6 text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -255,7 +255,7 @@ const Homepage = () => {
                 name="mail"
                 value="mail"
                 id="check-mail"
-                className="mr-2 cursor-pointer w-6 h-6"
+                className="mr-2 cursor-pointer w-6 h-6 form-checkbox text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -272,7 +272,7 @@ const Homepage = () => {
             </p>
             <code
               id="link-output"
-              className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 "
+              className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 overflow-x-auto whitespace-nowrap"
             >
               {theUrl}?sharing=https://
               {linkValue.replace("https://", "").replace("http://", "")}
@@ -288,7 +288,7 @@ const Homepage = () => {
             </button>
             <code
               id="markup-output"
-              className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2"
+              className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 overflow-x-auto whitespace-nowrap"
             >
               &lt;a href="{theUrl}?sharing=https://
               {linkValue.replace("https://", "").replace("http://", "")}
