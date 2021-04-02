@@ -7,6 +7,7 @@ import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 
 //TODO clean out functions into utils
+//TODO Tablet views!
 
 const Homepage = () => {
   const [linkValue, setLinkValue] = useState("");
@@ -155,7 +156,7 @@ const Homepage = () => {
           <li className="inline-block md:block">
             <a
               href="#"
-              className="rounded-full h-14 w-14 md:h-auto md:w-auto bg-aqua-llama text-darth-llama md:rounded-md px-4 py-2 text-xl flex items-center focus:bg-darth-llama focus:text-aqua-llama hover:bg-darth-llama hover:text-aqua-llama transition-all duration-200 ease-in-out"
+              className="rounded-full h-14 w-14 md:h-auto md:w-auto bg-darth-llama text-aqua-llama md:rounded-md px-4 py-2 text-xl flex items-center hover:bg-aqua-llama hover:text-darth-llama focus:bg-aqua-llama focus:text-darth-llama transition-all duration-200 ease-in-out"
               onClick={(e) => {
                 e.preventDefault(), document.getElementById("bmc-wbtn").click();
               }}

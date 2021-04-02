@@ -1,5 +1,7 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
+import LlamaLogo from "../public/img/logo-large.svg";
+
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import { BiCoffeeTogo, BiLock, BiMailSend } from "react-icons/bi";
@@ -23,6 +25,7 @@ const Share = () => {
 
   const [site, setSite] = useState("");
   const [sitePreview, setSitePreview] = useState(null);
+  const [isFetched, setFetched] = useState(false);
 
   let textContent = "";
   let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site.replace(
@@ -71,6 +74,38 @@ const Share = () => {
     window.dispatchEvent(coffeeTrigger);
   };
 
+  function handleErrors(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+  }
+
+  let colors = {
+    "aqua-llama": "#7CC9B4",
+    "soft-llama-pink": "#e4c3c3",
+    "calma-llama": "#4b31a1",
+    "violet-llama": "#7e7192",
+    "darth-llama": "#00140F",
+  };
+
+  let globeAnimation = gsap.timeline({
+    repeat: -1,
+    defaults: {
+      duration: 0.5,
+      ease: "power3",
+    },
+  });
+
+  if (!isFetched) {
+    const globe = document.getElementById("globe");
+
+    globeAnimation
+      .to(globe, { fill: colors["violet-llama"] })
+      .to(globe, { fill: colors["soft-llama-pink"] })
+      .to(globe, { fill: colors["calma-llama"] });
+  }
+
   useEffect(() => {
     console.log(exclude);
     const urlParams = new URLSearchParams(window.location.search);
@@ -87,12 +122,11 @@ const Share = () => {
         mode: "cors",
       }
     )
+      .then(handleErrors)
       .then((response) => response.json())
       .then((data) => {
         setSitePreview(data);
-      })
-      .catch((error) => {
-        console.error("you done fucked up", error);
+        setFetched(true)
       });
 
     if (urlParams.has("exclude")) {
@@ -192,12 +226,19 @@ const Share = () => {
         <div className="container px-12 md:px-36 pt-14 md:pt-28 mx-auto text-center text-darth-llama h-screen items-center flex md:block">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
             <h1 className="text-3xl mb-5">Share to Social Media</h1>
-            {sitePreview != null && sitePreview.image != null && (
-              <img
-                src={sitePreview.image}
-                alt={sitePreview.title}
-                className="max-w-full block md:max-w-xs mx-auto"
-              />
+            {isFetched ? (
+              sitePreview != null &&
+              sitePreview.image != null && (
+                <img
+                  src={sitePreview.image}
+                  alt={sitePreview.title}
+                  className="max-w-full block md:max-w-xs mx-auto"
+                />
+              )
+            ) : (
+              <div className="flex justify-center w-full">
+                <LlamaLogo />
+              </div>
             )}
             <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5 whitespace-nowrap overflow-x-auto">
               {site.replace("http://", "https://")}
