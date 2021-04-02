@@ -186,7 +186,7 @@ const Share = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <nav className="md:container mx-auto px-5 md:px-0 py-5 absolute md:relative top-0 w-full">
+      <nav className="md:container mx-auto px-5 xl:px-0 py-5 absolute md:relative top-0 w-full">
         <ul className="md:flex items-center justify-end md:justify-start md:items-end ">
           <li className="hidden md:block">
             <a href="/" className="text-3xl flex items-end font-heading">
@@ -224,7 +224,7 @@ const Share = () => {
       </nav>
       <main>
         <div className="container px-12 md:px-36 pt-14 md:pt-28 mx-auto text-center text-darth-llama h-screen items-center flex md:block">
-          <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
+          <div className="form flex flex-col md:text-xl max-w-xl  md:max-w-full lg:max-w-xl mx-auto">
             <h1 className="text-3xl mb-5">Share to Social Media</h1>
             {isFetched ? (
               sitePreview != null &&

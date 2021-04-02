@@ -129,7 +129,7 @@ const Homepage = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <nav className="md:container mx-auto px-5 md:px-0 md:py-5">
+      <nav className="md:container mx-auto px-5 xl:px-0 md:py-5">
         <ul className="md:flex items-end">
           <li>
             <a href="/" className="text-3xl flex items-end font-heading">
@@ -169,7 +169,7 @@ const Homepage = () => {
       </nav>
       <main>
         <div className="container px-12 md:px-36 pt-28 mx-auto flex items-center text-darth-llama">
-          <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
+          <div className="form flex flex-col md:text-xl max-w-xl md:max-w-full lg:max-w-xl mx-auto">
             <h1 className="text-center text-3xl mb-5">Share To Social Media</h1>
             <label htmlFor="link entry" className="mb-2">
               <strong>Step 1:</strong> Enter the link you wish to share.
