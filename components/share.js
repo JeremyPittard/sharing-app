@@ -2,9 +2,13 @@ import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
-import { BiCoffeeTogo, BiLock, BiMailSend } from 'react-icons/bi'
-import {FaFacebookF, FaTwitter, FaLinkedin, FaPinterest, } from 'react-icons/fa'
-
+import { BiCoffeeTogo, BiLock, BiMailSend } from "react-icons/bi";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedin,
+  FaPinterest,
+} from "react-icons/fa";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -73,21 +77,23 @@ const Share = () => {
     if (urlParams.has("sharing")) {
       setSite(urlParams.get("sharing"));
     }
-
-      fetch(
-        `https://api.linkpreview.net/?key=826cf34168179abe59fe4438b1c31d21&q=${urlParams.get('sharing')}`,
-        {
-          method: "GET",
-          mode: "cors"
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setSitePreview(data)
-        })
-        .catch((error) => {
-          console.error("you done fucked up", error);
-        });
+    // todo show loader/skeleton until fetched
+    fetch(
+      `https://api.linkpreview.net/?key=826cf34168179abe59fe4438b1c31d21&q=${urlParams.get(
+        "sharing"
+      )}`,
+      {
+        method: "GET",
+        mode: "cors",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setSitePreview(data);
+      })
+      .catch((error) => {
+        console.error("you done fucked up", error);
+      });
 
     if (urlParams.has("exclude")) {
       const excludeString = urlParams.get("exclude");
@@ -109,14 +115,16 @@ const Share = () => {
     };
   }, []);
 
-  
   const scrolling = (e, destination) => {
     e.preventDefault();
     gsap.to(window, { scrollTo: destination });
 
-    let blurElement = document.getElementById(destination.replace('#', ''))
-        blurElement.blur();
+    let destinationElement = document.getElementById(
+      destination.replace("#", "")
+    );
 
+    destinationElement.setAttribute("tabIndex", "0");
+    destinationElement.focus();
   };
 
   return (
@@ -144,9 +152,9 @@ const Share = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <nav className="md:container mx-auto px-5 md:px-0 py-5">
-        <ul className="md:flex items-end">
-          <li>
+      <nav className="md:container mx-auto px-5 md:px-0 py-5 absolute md:relative top-0 w-full">
+        <ul className="md:flex items-center justify-end md:justify-start md:items-end ">
+          <li className="hidden md:block">
             <a href="/" className="text-3xl flex items-end font-heading">
               <img
                 src="/img/logo-large.svg"
@@ -156,10 +164,10 @@ const Share = () => {
               ShareLlama
             </a>
           </li>
-          <li className="text-xl md:ml-auto mr-12 hidden md:block mt-5 md:mt-0">
+          <li className="text-xl md:ml-auto md:mr-12 block mt-0">
             <a
               href="#what-it-is"
-              className="flex items-center whats-this"
+              className="flex items-center whats-this justify-end md:justify-start"
               onClick={(e, destination) => scrolling(e, "#what-it-is")}
             >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
@@ -169,93 +177,97 @@ const Share = () => {
             </a>
           </li>
           <li className="hidden md:block">
-          <a
+            <a
               href="#what-it-is"
               className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
               onClick={(e, destination) => scrolling(e, "#security-tips")}
             >
-              <BiLock className="mr-2.5"/>Security Check
+              <BiLock className="mr-2.5" />
+              Security Check
             </a>
           </li>
         </ul>
       </nav>
       <main>
-        <div className="container px-12 md:px-36 pt-14 md:pt-28 mx-auto text-center text-darth-llama md:h-screen">
+        <div className="container px-12 md:px-36 pt-14 md:pt-28 mx-auto text-center text-darth-llama h-screen items-center flex md:block">
           <div className="form flex flex-col md:text-xl max-w-xl mx-auto">
-           <h1 className='text-3xl mb-5'>Share to Social Media</h1>
-
-           {sitePreview != null && sitePreview.image != null && 
-            <img src={sitePreview.image} alt={sitePreview.title} className="max-w-full block md:max-w-xs mx-auto"/>
-           }
-
-           <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5 whitespace-nowrap overflow-x-auto">
+            <h1 className="text-3xl mb-5">Share to Social Media</h1>
+            {sitePreview != null && sitePreview.image != null && (
+              <img
+                src={sitePreview.image}
+                alt={sitePreview.title}
+                className="max-w-full block md:max-w-xs mx-auto"
+              />
+            )}
+            <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block my-5 whitespace-nowrap overflow-x-auto">
               {site.replace("http://", "https://")}
             </code>{" "}
             <div className="share-wrap flex flex-row justify-around w-full mt-5 items-center mx-auto text-5xl">
-
-            {!exclude.fb && (
-              <a
-                href={fbLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="share link to facebook"
-                className="text-bookface hover:t"
-              >
-               <FaFacebookF />
-              </a>
-            )}
-            {!exclude.twitter && (
-              <a
-                href={twitterLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="share link to twitter"
-                className="text-chic-tweetz hover:t"
-              >
-                <FaTwitter />
-              </a>
-            )}
-            {!exclude.linked && (
-              <a
-                href={linkedInLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="share link to linked in"
-                className="text-linked hover:t"
-              >
-                <FaLinkedin />
-              </a>
-            )}
-            {!exclude.pin && (
-              <a
-                href={pinterestLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Share link to pinterest"
-                className="text-pints"
-              >
-                <FaPinterest />
-              </a>
-            )}
-            {!exclude.mail && (
-              <a
-                href={mailtoLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="share link via email"
-                className=" hover:t"
-              >
-                <BiMailSend />
-              </a>
-            )}
+              {!exclude.fb && (
+                <a
+                  href={fbLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="share link to facebook"
+                  className="text-bookface hover:t"
+                >
+                  <FaFacebookF />
+                </a>
+              )}
+              {!exclude.twitter && (
+                <a
+                  href={twitterLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="share link to twitter"
+                  className="text-chic-tweetz hover:t"
+                >
+                  <FaTwitter />
+                </a>
+              )}
+              {!exclude.linked && (
+                <a
+                  href={linkedInLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="share link to linked in"
+                  className="text-linked hover:t"
+                >
+                  <FaLinkedin />
+                </a>
+              )}
+              {!exclude.pin && (
+                <a
+                  href={pinterestLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="Share link to pinterest"
+                  className="text-pints"
+                >
+                  <FaPinterest />
+                </a>
+              )}
+              {!exclude.mail && (
+                <a
+                  href={mailtoLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="share link via email"
+                  className=" hover:t"
+                >
+                  <BiMailSend />
+                </a>
+              )}
             </div>
-
           </div>
         </div>
 
         <div className="container py-28 mx-auto text-darth-llama px-5 md:px-0">
           <div className="form md:text-xl max-w-xl mx-auto">
-            <h2 className="text-5xl text-center focus:outline-none" id="what-it-is">
+            <h2
+              className="text-5xl text-center focus:outline-none"
+              id="what-it-is"
+            >
               What is this?!{" "}
             </h2>
             <h3 className="text-2xl text-center mb-5">
@@ -267,7 +279,10 @@ const Share = () => {
               data, the primary function of this site is to share to social
               media quickly
             </p>
-            <h2 className="text-5xl text-center mt-10 mb-2 focus:outline-none" id="security-tips" >
+            <h2
+              className="text-5xl text-center mt-10 mb-2 focus:outline-none"
+              id="security-tips"
+            >
               Security Check
             </h2>
             <code className="text-sm bg-darth-llama text-aqua-llama rounded-md px-4 py-2 w-full text-center block whitespace-nowrap overflow-x-auto">
@@ -283,19 +298,18 @@ const Share = () => {
                 If the answer is no, don't share the link - it could be spam or
                 worse.
               </li>
-            </ul>
-              {" "}
-              <a
-                href="#"
-                className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center w-60 justify-center text-center mx-auto my-5 focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
-                onClick={(e) => {
-                  e.preventDefault(),
-                    document.getElementById("bmc-wbtn").click();
-                }}
-              >
-                <BiCoffeeTogo className="mr-2.5" />Caffeinate me!
-              </a>
-              <p className="mt-10">
+            </ul>{" "}
+            <a
+              href="#"
+              className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center w-60 justify-center text-center mx-auto my-5 focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
+              onClick={(e) => {
+                e.preventDefault(), document.getElementById("bmc-wbtn").click();
+              }}
+            >
+              <BiCoffeeTogo className="mr-2.5" />
+              Caffeinate me!
+            </a>
+            <p className="mt-10">
               if you like this tool, I'd totally appreciate if you hit the buy
               me a coffee button up there 👆, all proceeds will go towards the
               hosting and maintainence of this and other sideprojects

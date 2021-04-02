@@ -6,6 +6,8 @@ import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollToPlugin);
 
+//TODO clean out functions into utils
+
 const Homepage = () => {
   const [linkValue, setLinkValue] = useState("");
   const [excludeValue, setExcludeValue] = useState("");
@@ -59,6 +61,13 @@ const Homepage = () => {
   const scrolling = (e, destination) => {
     e.preventDefault();
     gsap.to(window, { scrollTo: destination });
+
+    let destinationElement = document.getElementById(
+      destination.replace("#", "")
+    );
+
+    destinationElement.setAttribute("tabIndex", "0");
+    destinationElement.focus();
   };
 
   const copyToast = () => {
@@ -181,7 +190,7 @@ const Homepage = () => {
                 name="facebook"
                 value="facebook"
                 id="check-facebook"
-                className="mr-2 form-checkbox cursor-pointer w-6 h-6 text-violet-llama" 
+                className="mr-2 form-checkbox cursor-pointer w-6 h-6 text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
