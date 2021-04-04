@@ -113,16 +113,16 @@ const Homepage = () => {
               name="link-entry"
             />
             <p>
-              <strong>Step 2:</strong> Select platforms you don't want to share
+              <strong>Step 2:</strong> Select platforms you <strong>don't</strong> want to share
               on.{" "}
             </p>
-            <div className="check-container mt-2 flex items-center">
+            <div className="check-container mt-2 py-2 flex items-center">
               <input
                 type="checkbox"
                 name="facebook"
                 value="facebook"
                 id="check-facebook"
-                className="mr-2 form-checkbox cursor-pointer w-6 h-6 text-violet-llama"
+                className="mr-5 form-checkbox cursor-pointer w-10 h-10 md:w-8 md:h-8 text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -130,7 +130,7 @@ const Homepage = () => {
                 onClick={() =>
                   document.getElementById("check-facebook").click()
                 }
-                className="cursor-pointer"
+                className="cursor-pointer text-lg"
               >
                 Facebook
               </label>
@@ -141,7 +141,7 @@ const Homepage = () => {
                 name="linkedin"
                 value="linkedin"
                 id="check-linkedin"
-                className="mr-2 w-6 h-6 form-checkbox text-violet-llama"
+                className="mr-5 w-10 h-10 md:w-8 md:h-8 form-checkbox text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -149,24 +149,24 @@ const Homepage = () => {
                 onClick={() =>
                   document.getElementById("check-linkedin").click()
                 }
-                className="cursor-pointer"
+                className="cursor-pointer text-lg"
               >
                 LinkedIn
               </label>
             </div>
-            <div className="check-container flex items-center">
+            <div className="check-container flex items-center py-2">
               <input
                 type="checkbox"
                 name="twitter"
                 value="twitter"
                 id="check-twitter"
-                className="mr-2 cursor-pointer w-6 h-6 form-checkbox text-violet-llama"
+                className="mr-5 cursor-pointer w-10 h-10 md:w-8 md:h-8 form-checkbox text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
                 htmlFor="twitter"
                 onClick={() => document.getElementById("check-twitter").click()}
-                className="cursor-pointer"
+                className="cursor-pointer text-lg"
               >
                 Twitter
               </label>
@@ -177,7 +177,7 @@ const Homepage = () => {
                 name="pinterest"
                 value="pinterest"
                 id="check-pinterest"
-                className="mr-2 cursor-pointer form-checkbox w-6 h-6 text-violet-llama"
+                className="mr-5 cursor-pointer form-checkbox w-10 h-10 md:w-8 md:h-8 text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
@@ -185,24 +185,24 @@ const Homepage = () => {
                 onClick={() =>
                   document.getElementById("check-pinterest").click()
                 }
-                className="cursor-pointer"
+                className="cursor-pointer text-lg"
               >
                 Pinterest
               </label>
             </div>
-            <div className="check-container flex items-center">
+            <div className="check-container flex items-center pt-2">
               <input
                 type="checkbox"
                 name="mail"
                 value="mail"
                 id="check-mail"
-                className="mr-2 cursor-pointer w-6 h-6 form-checkbox text-violet-llama"
+                className="mr-5 cursor-pointer w-10 h-10 md:w-8 md:h-8 form-checkbox text-violet-llama"
                 onChange={(e) => addToExcludeValue(e)}
               />
               <label
                 htmlFor="mail"
                 onClick={() => document.getElementById("check-mail").click()}
-                className="cursor-pointer"
+                className="cursor-pointer text-lg"
               >
                 Email
               </label>
