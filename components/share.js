@@ -30,23 +30,23 @@ const Share = () => {
   const [isFetched, setFetched] = useState(false);
 
   let textContent = "";
-  let fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site.replace(
+  const fbLink = `https://www.facebook.com/sharer/sharer.php?u=${site.replace(
     "http://",
     "https://"
   )}`;
-  let linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${site.replace(
+  const linkedInLink = `https://www.linkedin.com/shareArticle?mini=true&url=${site.replace(
     "http://",
     "https://"
   )}&title=&summary=${textContent}&source=`;
-  let twitterLink = `https://twitter.com/intent/tweet?url=${site.replace(
+  const twitterLink = `https://twitter.com/intent/tweet?url=${site.replace(
     "http://",
     "https://"
   )}&text=${textContent}`;
-  let pinterestLink = `https://pinterest.com/pin/create/button/?url=${site.replace(
+  const pinterestLink = `https://pinterest.com/pin/create/button/?url=${site.replace(
     "http://",
     "https://"
   )}&media=&description=${textContent}`;
-  let mailtoLink = `mailto:info@example.com?&subject=&body=${site.replace(
+  const mailtoLink = `mailto:info@example.com?&subject=&body=${site.replace(
     "http://",
     "https://"
   )} ${textContent}`;

@@ -247,7 +247,7 @@ const Homepage = () => {
         </div>
         <div className="container px-12 md:px-0 py-28 mx-auto text-darth-llama">
           <div className="form md:text-xl max-w-xl mx-auto">
-            <h2 className="text-5xl text-center" id="what-it-is">
+            <h2 className="text-5xl text-center focus:outline-none" id="what-it-is">
               ShareLlama{" "}
             </h2>
             <h3 className="text-2xl text-center mb-5">

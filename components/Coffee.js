@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 const Coffee = () => {
 
-    let buyMeACoffeeScript = document.createElement("script");
+    const buyMeACoffeeScript = document.createElement("script");
     buyMeACoffeeScript.src =
       "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js";
     buyMeACoffeeScript.setAttribute("data-name", "BMC-Widget");
@@ -22,7 +22,7 @@ const Coffee = () => {
     buyMeACoffeeScript.setAttribute("data-position", "right");
     //on render does not actually trigger script, needed to get a little funky
     buyMeACoffeeScript.onload = function () {
-      var coffeeTrigger = document.createEvent("Event");
+      const coffeeTrigger = document.createEvent("Event");
       coffeeTrigger.initEvent("DOMContentLoaded", false, false);
       window.dispatchEvent(coffeeTrigger);
     };

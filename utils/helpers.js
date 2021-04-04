@@ -16,7 +16,7 @@ const helpers = {
         e.preventDefault();
         gsap.to(window, { scrollTo: destination });
     
-        let destinationElement = document.getElementById(
+        const destinationElement = document.getElementById(
           destination.replace("#", "")
         );
     
