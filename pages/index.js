@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Homepage from "../components/home";
 import Share from "../components/share";
-
 import Loading from "../components/Loading";
 
 export default function Home() {
@@ -9,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams)
+    console.log(urlParams);
 
     if (urlParams.has("sharing")) {
       setPath("sharing");
@@ -18,11 +17,11 @@ export default function Home() {
     }
   }, []);
 
-     if (checkPath === "sharing") {
-      return <Share />;
-    } else if (checkPath === "home") {
-      return <Homepage />;
-    } else {
-      <Loading />
-    }
-  } 
+  if (checkPath === "sharing") {
+    return <Share />;
+  } else if (checkPath === "home") {
+    return <Homepage />;
+  } else {
+    return <Loading />;
+  }
+}

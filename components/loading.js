@@ -16,6 +16,8 @@ const Loading = () => {
     "darth-llama": "#00140F",
   };
 
+
+
   const globeAnimation = gsap.timeline({
     repeat: -1,
     defaults: {
@@ -23,6 +25,15 @@ const Loading = () => {
       ease: "power3",
     },
   });
+
+  useEffect(() => {
+    const globe = document.getElementById("globe");
+
+    globeAnimation
+    .to(globe, { fill: colors["violet-llama"] })
+    .to(globe, { fill: colors["soft-llama-pink"] })
+    .to(globe, { fill: colors["calma-llama"] });
+  }, [])
 
   return (
     <div>

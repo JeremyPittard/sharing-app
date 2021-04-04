@@ -186,7 +186,7 @@ const Share = () => {
                 <img
                   src={sitePreview.image}
                   alt={sitePreview.title}
-                  className="max-w-full block md:max-w-xs mx-auto"
+                  className="max-w-full block md:max-w-xs mx-auto max-h-52"
                 />
               )
             ) : (
