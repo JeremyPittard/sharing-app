@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
-import LlamaLogo from "../public/img/logo-large.svg";
+import LlamaLogo from "./LlamaLogo";
 import Coffee from './Coffee';
 import helpers from '../utils/helpers';
 
