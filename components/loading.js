@@ -1,7 +1,29 @@
 import Head from 'next/head'
 import React, {useState, useEffect} from 'react'
+import LlamaLogo from "../public/img/logo-large.svg";
+
+import gsap from "gsap";
+
+
 
 const Loading = () => {
+
+  const colors = {
+    "aqua-llama": "#7CC9B4",
+    "soft-llama-pink": "#e4c3c3",
+    "calma-llama": "#4b31a1",
+    "violet-llama": "#7e7192",
+    "darth-llama": "#00140F",
+  };
+
+  const globeAnimation = gsap.timeline({
+    repeat: -1,
+    defaults: {
+      duration: 0.5,
+      ease: "power3",
+    },
+  });
+
   return (
     <div>
       <Head>
@@ -15,7 +37,7 @@ const Loading = () => {
       </Head>
 
       <main>
-        <h1>Loading</h1>
+        <LlamaLogo />
       </main>
     </div>
   )

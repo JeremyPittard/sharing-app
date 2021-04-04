@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Homepage from "../components/home";
-import Loading from "../components/loading";
+import Loading from "../components/Loading";
 import Share from "../components/share";
 
 export default function Home() {

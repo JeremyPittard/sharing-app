@@ -1,6 +1,8 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import LlamaLogo from "../public/img/logo-large.svg";
+import Coffee from './Coffee';
+import helpers from '../utils/helpers';
 
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
@@ -49,39 +51,8 @@ const Share = () => {
     "https://"
   )} ${textContent}`;
 
-  let buyMeACoffeeScript = document.createElement("script");
-  buyMeACoffeeScript.src =
-    "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js";
-  buyMeACoffeeScript.setAttribute("data-name", "BMC-Widget");
-  buyMeACoffeeScript.setAttribute("data-id", "jpittard");
-  buyMeACoffeeScript.setAttribute("data-x_margin", "18");
-  buyMeACoffeeScript.setAttribute("data-y_margin", "18");
-  buyMeACoffeeScript.setAttribute("data-id", "jpittard");
-  buyMeACoffeeScript.setAttribute(
-    "data-description",
-    "Support the creation of this tool and more"
-  );
-  buyMeACoffeeScript.setAttribute(
-    "data-message",
-    "I'm glad you appreciated this project 😍,thankyou for your support!"
-  );
-  buyMeACoffeeScript.setAttribute("data-color", "transparent");
-  buyMeACoffeeScript.setAttribute("data-position", "right");
-  //on render does not actually trigger script, needed to get a little funky
-  buyMeACoffeeScript.onload = function () {
-    var coffeeTrigger = document.createEvent("Event");
-    coffeeTrigger.initEvent("DOMContentLoaded", false, false);
-    window.dispatchEvent(coffeeTrigger);
-  };
 
-  function handleErrors(response) {
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response;
-  }
-
-  let colors = {
+  const colors = {
     "aqua-llama": "#7CC9B4",
     "soft-llama-pink": "#e4c3c3",
     "calma-llama": "#4b31a1",
@@ -89,7 +60,7 @@ const Share = () => {
     "darth-llama": "#00140F",
   };
 
-  let globeAnimation = gsap.timeline({
+  const globeAnimation = gsap.timeline({
     repeat: -1,
     defaults: {
       duration: 0.5,
@@ -112,7 +83,6 @@ const Share = () => {
     if (urlParams.has("sharing")) {
       setSite(urlParams.get("sharing"));
     }
-    // todo show loader/skeleton until fetched
     fetch(
       `https://api.linkpreview.net/?key=826cf34168179abe59fe4438b1c31d21&q=${urlParams.get(
         "sharing"
@@ -122,7 +92,7 @@ const Share = () => {
         mode: "cors",
       }
     )
-      .then(handleErrors)
+      .then(helpers.handleErros)
       .then((response) => response.json())
       .then((data) => {
         setSitePreview(data);
@@ -142,24 +112,7 @@ const Share = () => {
       setExclude({ ...exclude, excludeObject });
     }
 
-    document.body.appendChild(buyMeACoffeeScript);
-    return () => {
-      document.body.removeChild(buyMeACoffeeScript);
-      document.body.removeChild(document.getElementById("bmc-wbtn"));
-    };
   }, []);
-
-  const scrolling = (e, destination) => {
-    e.preventDefault();
-    gsap.to(window, { scrollTo: destination });
-
-    let destinationElement = document.getElementById(
-      destination.replace("#", "")
-    );
-
-    destinationElement.setAttribute("tabIndex", "0");
-    destinationElement.focus();
-  };
 
   return (
     <div>
@@ -186,6 +139,7 @@ const Share = () => {
         <meta name="msapplication-TileColor" content="#7e7192" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <Coffee />
       <nav className="md:container mx-auto px-5 xl:px-0 py-5 absolute md:relative top-0 w-full">
         <ul className="md:flex items-center justify-end md:justify-start md:items-end ">
           <li className="hidden md:block">
@@ -202,7 +156,7 @@ const Share = () => {
             <a
               href="#what-it-is"
               className="flex items-center whats-this justify-end md:justify-start"
-              onClick={(e, destination) => scrolling(e, "#what-it-is")}
+              onClick={(e, destination) => helpers.scrolling(e, "#what-it-is")}
             >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?
@@ -214,7 +168,7 @@ const Share = () => {
             <a
               href="#what-it-is"
               className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
-              onClick={(e, destination) => scrolling(e, "#security-tips")}
+              onClick={(e, destination) => helpers.scrolling(e, "#security-tips")}
             >
               <BiLock className="mr-2.5" />
               Security Check

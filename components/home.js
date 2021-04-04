@@ -1,87 +1,17 @@
 import Head from "next/head";
 import { BiCoffeeTogo, BiCopyAlt } from "react-icons/bi";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import gsap from "gsap";
-import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+import Coffee from './Coffee';
+import helpers from '../utils/helpers';
 
-gsap.registerPlugin(ScrollToPlugin);
 
 //TODO clean out functions into utils
-//TODO Tablet views!
 
 const Homepage = () => {
   const [linkValue, setLinkValue] = useState("");
   const [excludeValue, setExcludeValue] = useState("");
   const theUrl = window.location.href;
-
-  let buyMeACoffeeScript = document.createElement("script");
-  buyMeACoffeeScript.src =
-    "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js";
-  buyMeACoffeeScript.setAttribute("data-name", "BMC-Widget");
-  buyMeACoffeeScript.setAttribute("data-id", "jpittard");
-  buyMeACoffeeScript.setAttribute("data-x_margin", "18");
-  buyMeACoffeeScript.setAttribute("data-y_margin", "18");
-  buyMeACoffeeScript.setAttribute("data-id", "jpittard");
-  buyMeACoffeeScript.setAttribute(
-    "data-description",
-    "Support the creation of this tool and more"
-  );
-  buyMeACoffeeScript.setAttribute(
-    "data-message",
-    "I'm glad you appreciated this project 😍,thankyou for your support!"
-  );
-  buyMeACoffeeScript.setAttribute("data-color", "transparent");
-  buyMeACoffeeScript.setAttribute("data-position", "right");
-  //on render does not actually trigger script, needed to get a little funky
-  buyMeACoffeeScript.onload = function () {
-    var coffeeTrigger = document.createEvent("Event");
-    coffeeTrigger.initEvent("DOMContentLoaded", false, false);
-    window.dispatchEvent(coffeeTrigger);
-  };
-
-  useEffect(() => {
-    document.body.appendChild(buyMeACoffeeScript);
-    return () => {
-      document.body.removeChild(buyMeACoffeeScript);
-      document.body.removeChild(document.getElementById("bmc-wbtn"));
-    };
-  }, []);
-
-  const copyLinkValue = (fieldTarget) => {
-    var text = document.getElementById(fieldTarget).innerText;
-    var elem = document.createElement("textarea");
-    document.body.appendChild(elem);
-    elem.value = text;
-    elem.select();
-    document.execCommand("copy");
-    document.body.removeChild(elem);
-
-    copyToast();
-  };
-
-  const scrolling = (e, destination) => {
-    e.preventDefault();
-    gsap.to(window, { scrollTo: destination });
-
-    let destinationElement = document.getElementById(
-      destination.replace("#", "")
-    );
-
-    destinationElement.setAttribute("tabIndex", "0");
-    destinationElement.focus();
-  };
-
-  const copyToast = () => {
-    const toast = document.getElementById("copy-toast");
-    gsap.to(toast, {
-      opacity: 1,
-      duration: 0.5,
-      translateY: "-15",
-      yoyo: true,
-      repeat: 1,
-      repeatDelay: 1,
-    });
-  };
 
   const addToExcludeValue = (e) => {
     var checked = document.querySelectorAll("input:checked").length;
@@ -106,6 +36,7 @@ const Homepage = () => {
 
   return (
     <>
+    <Coffee />
       <Head>
         <title>ShareLlama</title>
         <link
@@ -145,7 +76,7 @@ const Homepage = () => {
             <a
               href="#what-it-is"
               className="flex items-center whats-this"
-              onClick={(e, destination) => scrolling(e, "#what-it-is")}
+              onClick={(e, destination) => helpers.scrolling(e, "#what-it-is")}
             >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?
@@ -290,7 +221,7 @@ const Homepage = () => {
             </code>{" "}
             <p></p>
             <button
-              onClick={() => copyLinkValue("link-output")}
+              onClick={() => helpers.copyLinkValue("link-output")}
               className="bg-violet-llama text-white rounded-md w-36 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5"
             >
               <BiCopyAlt className="mr-2.5" />
@@ -306,7 +237,7 @@ const Homepage = () => {
               me!&lt;/a&gt;
             </code>{" "}
             <button
-              onClick={() => copyLinkValue("markup-output")}
+              onClick={() => helpers.copyLinkValue("markup-output")}
               className="bg-violet-llama text-white rounded-md w-48 px-4 py-2 text-xl flex mx-auto items-center justify-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out my-5"
             >
               <BiCopyAlt className="mr-2.5" />
