@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Homepage from "../components/home";
-import Loading from "../components/Loading";
 import Share from "../components/share";
+
+import Loading from "../components/Loading";
 
 export default function Home() {
   const [checkPath, setPath] = useState("loading");
@@ -22,6 +23,6 @@ export default function Home() {
     } else if (checkPath === "home") {
       return <Homepage />;
     } else {
-      return <Loading />;
+      <Loading />
     }
   } 
