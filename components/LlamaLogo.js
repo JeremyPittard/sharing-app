@@ -26,4 +26,4 @@ const LlamaLogo = () => {
   );
 };
 
-export const LlamaLogo;
+export default LlamaLogo;
