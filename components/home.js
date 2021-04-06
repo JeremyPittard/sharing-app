@@ -76,7 +76,7 @@ const Homepage = () => {
             <a
               href="#what-it-is"
               className="flex items-center whats-this"
-              onClick={(e, destination) => helpers.scrolling(e, "#what-it-is")}
+              onClick={(e, destination) => helpers.smoothScroll(e, "#what-it-is")}
             >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?

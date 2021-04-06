@@ -156,7 +156,7 @@ const Share = () => {
             <a
               href="#what-it-is"
               className="flex items-center whats-this justify-end md:justify-start"
-              onClick={(e, destination) => helpers.scrolling(e, "#what-it-is")}
+              onClick={(e, destination) => helpers.smoothScroll(e, "#what-it-is")}
             >
               <span className="rounded-full flex items-center text-aqua-llama bg-darth-llama h-14 w-14 md:h-12 md:w-12 text-3xl justify-center md:mt-0 mr-2 transition-all duration-200 ease-in-out">
                 ?
@@ -168,7 +168,7 @@ const Share = () => {
             <a
               href="#what-it-is"
               className="bg-darth-llama text-aqua-llama rounded-md px-4 py-2 text-xl flex items-center focus:bg-aqua-llama focus:text-darth-llama hover:bg-aqua-llama hover:text-darth-llama transition-all duration-200 ease-in-out"
-              onClick={(e, destination) => helpers.scrolling(e, "#security-tips")}
+              onClick={(e, destination) => helpers.smoothScroll(e, "#security-tips")}
             >
               <BiLock className="mr-2.5" />
               Security Check

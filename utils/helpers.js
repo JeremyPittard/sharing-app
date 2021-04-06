@@ -12,16 +12,19 @@ const helpers = {
         return response;
       },
 
-      scrolling: function(e, destination) {
+      smoothScroll: function(e, destination) {
         e.preventDefault();
-        gsap.to(window, { scrollTo: destination });
+        gsap.to(window, { scrollTo: destination, duration: 0.3});
+
+        window.history.pushState(null, null, destination)
     
-        const destinationElement = document.getElementById(
-          destination.replace("#", "")
-        );
-    
-        destinationElement.setAttribute("tabIndex", "0");
-        destinationElement.focus();
+        const destinationElement = document.querySelector(destination)
+        
+        setTimeout(() => {
+
+          destinationElement.setAttribute("tabIndex", "0");
+          destinationElement.focus();
+        }, 310)
 
       },
 
