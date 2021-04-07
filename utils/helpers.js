@@ -14,17 +14,15 @@ const helpers = {
 
       smoothScroll: function(e, destination) {
         e.preventDefault();
-        gsap.to(window, { scrollTo: destination, duration: 0.3});
+        const destinationElement = document.querySelector(destination)
+        gsap.to(window, { scrollTo: destination, duration: 0.3, onComplete: setFocus});
 
         window.history.pushState(null, null, destination)
-    
-        const destinationElement = document.querySelector(destination)
         
-        setTimeout(() => {
-
-          destinationElement.setAttribute("tabIndex", "0");
+        const setFocus = () => {
+          destinationElement.setAttribute("tabIndex", "-1");
           destinationElement.focus();
-        }, 310)
+        }
 
       },
 
