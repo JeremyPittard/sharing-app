@@ -42,6 +42,9 @@ $aqua-llama: #7CC9B4;
     }
   }
 
+  //unknown why, but popup shows immediately need to hide it temporarily
+  body> div:last-child { display:  none !important;}
+
   .whats-this { 
     &:hover, &:focus {
       span:not(.span-text) {
@@ -49,7 +52,6 @@ $aqua-llama: #7CC9B4;
         background-color: $aqua-llama;
       }
     }
-    
   }
 
   .share-wrap {
